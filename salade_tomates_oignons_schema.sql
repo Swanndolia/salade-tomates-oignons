@@ -14,14 +14,14 @@
 ------------------------------------------------------------
 -- Table (Entity): account (V2)
 ------------------------------------------------------------
- CREATE TABLE IF NOT EXISTS account(
-   account_id UUID  ,
-   username VARCHAR(20)  NOT NULL,
-   mail VARCHAR(50)  NOT NULL,
-   account_password VARCHAR(64)  NOT NULL,
+CREATE TABLE IF NOT EXISTS account(
+   account_id UUID DEFAULT uuid_generate_v4(),
+   username VARCHAR(20) NOT NULL,
+   mail VARCHAR(50) NOT NULL,
+   account_password VARCHAR(64) NOT NULL,
    default_serving INTEGER DEFAULT 4,
-   avatar VARCHAR(500) ,
-   account_admin BOOLEAN DEFAULT FALSE ,
+   avatar VARCHAR(500),
+   account_admin BOOLEAN DEFAULT FALSE,
    PRIMARY KEY(account_id),
    UNIQUE(mail)
 );
@@ -32,10 +32,10 @@
 -- Table (Entity): account (V1)
 ------------------------------------------------------------
 -- CREATE TABLE IF NOT EXISTS account(
---   account_id UUID  ,
---   username VARCHAR(20)  NOT NULL,
---   mail VARCHAR(50)  NOT NULL,
---   account_password VARCHAR(64)  NOT NULL,
+--   account_id UUID,
+--   username VARCHAR(20) NOT NULL,
+--   mail VARCHAR(50) NOT NULL,
+--   account_password VARCHAR(64) NOT NULL,
 --   PRIMARY KEY(account_id),
 --   UNIQUE(mail)
 --);
@@ -46,9 +46,9 @@
 -- Table (Entity): account_user (V1)
 ------------------------------------------------------------
 -- CREATE TABLE IF NOT EXISTS account_user(
---   account_id UUID  ,
+--   account_id UUID,
 --   default_serving INTEGER,
---   avatar VARCHAR(500) ,
+--   avatar VARCHAR(500),
 --   PRIMARY KEY(account_id),
 --   FOREIGN KEY(account_id) REFERENCES account(account_id)
 --);
@@ -59,7 +59,7 @@
 -- Table (Entity): account_admin (V1)
 ------------------------------------------------------------
 -- CREATE TABLE IF NOT EXISTS account_admin(
---   account_id UUID  ,
+--   account_id UUID,
 --   PRIMARY KEY(account_id),
 --   FOREIGN KEY(account_id) REFERENCES account(account_id)
 --);
@@ -70,13 +70,13 @@
 -- Table (Entity): recipe
 ------------------------------------------------------------
 CREATE TABLE IF NOT EXISTS recipe(
-   recipe_id UUID  ,
-   recipe_label VARCHAR(60)  NOT NULL,
+   recipe_id UUID DEFAULT uuid_generate_v4(),
+   recipe_label VARCHAR(60) NOT NULL,
    recipe_public BOOLEAN DEFAULT FALSE,
    instruction TEXT NOT NULL,
    duration INTEGER,
-   recipe_picture VARCHAR(500) ,
-   account_id UUID   NOT NULL,
+   recipe_picture VARCHAR(500),
+   account_id UUID NOT NULL,
    PRIMARY KEY(recipe_id),
    FOREIGN KEY(account_id) REFERENCES account(account_id)
 );
@@ -87,8 +87,8 @@ CREATE TABLE IF NOT EXISTS recipe(
 -- Table (Entity): unit
 ------------------------------------------------------------
 CREATE TABLE IF NOT EXISTS unit(
-   unit_id UUID  ,
-   unit_label VARCHAR(20)  NOT NULL,
+   unit_id UUID DEFAULT uuid_generate_v4(),
+   unit_label VARCHAR(20) NOT NULL,
    PRIMARY KEY(unit_id),
    UNIQUE(unit_label)
 );
@@ -99,8 +99,8 @@ CREATE TABLE IF NOT EXISTS unit(
 -- Table (Entity): animal
 ------------------------------------------------------------
 CREATE TABLE IF NOT EXISTS animal(
-   animal_id UUID  ,
-   animal_label VARCHAR(20)  NOT NULL,
+   animal_id UUID DEFAULT uuid_generate_v4(),
+   animal_label VARCHAR(20) NOT NULL,
    PRIMARY KEY(animal_id),
    UNIQUE(animal_label)
 );
@@ -111,15 +111,15 @@ CREATE TABLE IF NOT EXISTS animal(
 -- Table (Entity): ingredient
 ------------------------------------------------------------
 CREATE TABLE IF NOT EXISTS ingredient(
-   ingredient_id UUID  ,
-   ingredient_label VARCHAR(20)  NOT NULL,
+   ingredient_id UUID DEFAULT uuid_generate_v4(),
+   ingredient_label VARCHAR(20) NOT NULL,
    vegetarian BOOLEAN NOT NULL,
    vegan BOOLEAN NOT NULL,
    gluten_free BOOLEAN NOT NULL,
    lactose_free BOOLEAN NOT NULL,
    calorie INTEGER NOT NULL,
-   animal_id UUID  ,
-   unit_id UUID   NOT NULL,
+   animal_id UUID,
+   unit_id UUID NOT NULL,
    PRIMARY KEY(ingredient_id),
    FOREIGN KEY(animal_id) REFERENCES animal(animal_id),
    FOREIGN KEY(unit_id) REFERENCES unit(unit_id)
@@ -131,8 +131,8 @@ CREATE TABLE IF NOT EXISTS ingredient(
 -- Table (Relation): add_fridge
 ------------------------------------------------------------
 CREATE TABLE IF NOT EXISTS add_fridge(
-   account_id UUID  ,
-   ingredient_id UUID  ,
+   account_id UUID,
+   ingredient_id UUID,
    add_fridge_quantity INTEGER NOT NULL,
    PRIMARY KEY(account_id, ingredient_id),
    FOREIGN KEY(account_id) REFERENCES account(account_id),
@@ -145,8 +145,8 @@ CREATE TABLE IF NOT EXISTS add_fridge(
 -- Table (Relation): compose
 ------------------------------------------------------------
 CREATE TABLE IF NOT EXISTS compose(
-   recipe_id UUID  ,
-   ingredient_id UUID  ,
+   recipe_id UUID,
+   ingredient_id UUID,
    quantity DOUBLE PRECISION NOT NULL,
    consumed BOOLEAN NOT NULL,
    PRIMARY KEY(recipe_id, ingredient_id),
@@ -160,8 +160,8 @@ CREATE TABLE IF NOT EXISTS compose(
 -- Table (Relation): filter_ingredient
 ------------------------------------------------------------
 CREATE TABLE IF NOT EXISTS filter_ingredient(
-   account_id UUID  ,
-   ingredient_id UUID  ,
+   account_id UUID,
+   ingredient_id UUID,
    PRIMARY KEY(account_id, ingredient_id),
    FOREIGN KEY(account_id) REFERENCES account(account_id),
    FOREIGN KEY(ingredient_id) REFERENCES ingredient(ingredient_id)
@@ -173,8 +173,8 @@ CREATE TABLE IF NOT EXISTS filter_ingredient(
 -- Table (Relation): filter_recipe
 ------------------------------------------------------------
 CREATE TABLE IF NOT EXISTS filter_recipe(
-   account_id UUID  ,
-   recipe_id UUID  ,
+   account_id UUID,
+   recipe_id UUID,
    rating INTEGER,
    favorite BOOLEAN,
    PRIMARY KEY(account_id, recipe_id),
@@ -182,13 +182,13 @@ CREATE TABLE IF NOT EXISTS filter_recipe(
    FOREIGN KEY(recipe_id) REFERENCES recipe(recipe_id)
 );
 
-  INSERT INTO unit(unit_id, unit_label) VALUES
-  ('886ef1ff-004d-4446-b8b5-37fd9d9e8710', 'g'),
-  ('9a7b330d-a7cc-4c32-9d69-a6983b01bfb5', 'kg'),
-  ('b5c07b4d-1a7b-4b8f-8b4a-93d6c2c8db4a', 'l'),
-  ('c3f7e8d9-5a6b-4c1d-9e2f-8b7a6b5c4d3e', 'ml'),
-  ('d2e1f0a9-8b7c-4d6e-5f4a-3c2b1a0d9e8f', 'pc'),
-  ('f1e2d3c4-b5a6-4789-8901-2345f6g7h8i9', 'cl');
+INSERT INTO unit(unit_id, unit_label) VALUES
+('886ef1ff-004d-4446-b8b5-37fd9d9e8710', 'g'),
+('9a7b330d-a7cc-4c32-9d69-a6983b01bfb5', 'kg'),
+('b5c07b4d-1a7b-4b8f-8b4a-93d6c2c8db4a', 'l'),
+('c3f7e8d9-5a6b-4c1d-9e2f-8b7a6b5c4d3e', 'ml'),
+('d2e1f0a9-8b7c-4d6e-5f4a-3c2b1a0d9e8f', 'pc'),
+('f1e2d3c4-b5a6-4789-8901-2345f6g7h8i9', 'cl');
 
   INSERT INTO ingredient(ingredient_id, ingredient_label, vegetarian, vegan, gluten_free, lactose_free, calorie, unit_id) VALUES
   (uuid_generate_v4(), 'Pomme', TRUE, TRUE, TRUE, TRUE, 52, '886ef1ff-004d-4446-b8b5-37fd9d9e8710'),
@@ -204,7 +204,7 @@ CREATE TABLE IF NOT EXISTS filter_recipe(
   (uuid_generate_v4(), 'Cerise', TRUE, TRUE, TRUE, TRUE, 63, '886ef1ff-004d-4446-b8b5-37fd9d9e8710'),
   (uuid_generate_v4(), 'Ananas', TRUE, TRUE, TRUE, TRUE, 50, '886ef1ff-004d-4446-b8b5-37fd9d9e8710'),
   (uuid_generate_v4(), 'Mangue', TRUE, TRUE, TRUE, TRUE, 60, '886ef1ff-004d-4446-b8b5-37fd9d9e8710'),
-  (uuid_generate_v4(), 'Kiwi', TRUE, TRUE, TRUE, TRUE, 93, '886ef1ff-004d-4446-b8b5-37fd9d9e8710'),
+  (uuid_generate_v4(), 'Kiwi', TRUE, TRUE, TRUE, TRUE, 61, '886ef1ff-004d-4446-b8b5-37fd9d9e8710'),
   (uuid_generate_v4(), 'Melon', TRUE, TRUE, TRUE, TRUE, 34, '886ef1ff-004d-4446-b8b5-37fd9d9e8710'),
   (uuid_generate_v4(), 'Pastèque', TRUE, TRUE, TRUE, TRUE, 30, '886ef1ff-004d-4446-b8b5-37fd9d9e8710'),
   (uuid_generate_v4(), 'Citron', TRUE, TRUE, TRUE, TRUE, 29, '886ef1ff-004d-4446-b8b5-37fd9d9e8710'),
