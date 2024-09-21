@@ -33,44 +33,6 @@ CREATE TABLE IF NOT EXISTS account(
 
 
 ------------------------------------------------------------
--- Table (Entity): account (V1)
-------------------------------------------------------------
--- CREATE TABLE IF NOT EXISTS account(
---   account_id UUID,
---   username VARCHAR(20) NOT NULL,
---   mail VARCHAR(50) NOT NULL,
---   account_password VARCHAR(64) NOT NULL,
---   PRIMARY KEY(account_id),
---   UNIQUE(mail)
---);
-
-
-
-------------------------------------------------------------
--- Table (Entity): account_user (V1)
-------------------------------------------------------------
--- CREATE TABLE IF NOT EXISTS account_user(
---   account_id UUID,
---   default_serving INTEGER,
---   avatar VARCHAR(500),
---   PRIMARY KEY(account_id),
---   FOREIGN KEY(account_id) REFERENCES account(account_id)
---);
-
-
-
-------------------------------------------------------------
--- Table (Entity): account_admin (V1)
-------------------------------------------------------------
--- CREATE TABLE IF NOT EXISTS account_admin(
---   account_id UUID,
---   PRIMARY KEY(account_id),
---   FOREIGN KEY(account_id) REFERENCES account(account_id)
---);
-
-
-
-------------------------------------------------------------
 -- Table (Entity): recipe
 ------------------------------------------------------------
 CREATE TABLE IF NOT EXISTS recipe(
@@ -116,7 +78,7 @@ CREATE TABLE IF NOT EXISTS animal(
 ------------------------------------------------------------
 CREATE TABLE IF NOT EXISTS ingredient(
    ingredient_id UUID DEFAULT gen_random_uuid(),
-   ingredient_label VARCHAR(20) NOT NULL,
+   ingredient_label VARCHAR(30) NOT NULL,
    vegetarian BOOLEAN NOT NULL,
    vegan BOOLEAN NOT NULL,
    gluten_free BOOLEAN NOT NULL,
@@ -186,27 +148,32 @@ CREATE TABLE IF NOT EXISTS filter_recipe(
    FOREIGN KEY(recipe_id) REFERENCES recipe(recipe_id)
 );
 
-INSERT INTO animal(animal_id, animal_label) VALUES ('8adcb6de-5db4-42cf-8cf9-056d3b702969', 'Poule');
-INSERT INTO animal(animal_id, animal_label) VALUES ('5e05a91f-94f2-4f61-8bd5-3539c6148cc1', 'Bœuf');
-INSERT INTO animal(animal_id, animal_label) VALUES ('e0a4c668-4fa8-4eac-a482-9777126b009d', 'Mouton');
-INSERT INTO animal(animal_id, animal_label) VALUES ('1424d588-959c-407f-9527-0930710cce77', 'Veau');
-INSERT INTO animal(animal_id, animal_label) VALUES ('39adf80f-50da-4af9-bc82-b9a2892822c8', 'Agneau');
-INSERT INTO animal(animal_id, animal_label) VALUES ('6c6da8eb-7f4e-4c88-b190-7adf39156de7', 'Porc');
-INSERT INTO animal(animal_id, animal_label) VALUES ('84a3d090-98ec-434a-87fb-a63a265ed81f', 'Saumon');
-INSERT INTO animal(animal_id, animal_label) VALUES ('1a93aa6c-1d16-49df-a626-f56b7c0e709f', 'Cheval');
-INSERT INTO animal(animal_id, animal_label) VALUES ('85166f35-482e-4a56-a8e6-10a779a63dd6', 'Truite');
-INSERT INTO animal(animal_id, animal_label) VALUES ('c8a94fc5-311b-4a57-a77f-b85e47460708', 'Dinde');
-INSERT INTO animal(animal_id, animal_label) VALUES ('734595b8-a181-4b4c-a067-4c71f838911d', 'Moule');
-INSERT INTO animal(animal_id, animal_label) VALUES ('2eb1c5eb-d46e-481f-a18f-c520e8a40248', 'Huître');
-INSERT INTO animal(animal_id, animal_label) VALUES ('a0fab814-cea4-4417-9a62-1929fef64a43', 'Bison');
-INSERT INTO animal(animal_id, animal_label) VALUES ('23b977a3-b3ba-40c5-ab3d-2af62a2a500f', 'Cerf');
-INSERT INTO animal(animal_id, animal_label) VALUES ('7baa2d1d-45f0-48b4-91ab-da8b5a4bb92b', 'Oie');
-INSERT INTO animal(animal_id, animal_label) VALUES ('02e875a0-72bf-4f19-8657-4e1d3325fc91', 'Canard');
-INSERT INTO animal(animal_id, animal_label) VALUES ('c2f4115f-7c8d-4b71-834f-9cc89205da06', 'Sanglier');
-INSERT INTO animal(animal_id, animal_label) VALUES ('722c833b-791b-490d-8a6d-ce5ce755ce19', 'Faisan');
-INSERT INTO animal(animal_id, animal_label) VALUES ('ec866d40-86ba-4a54-85da-cd435b4daf00', 'Pintade');
-INSERT INTO animal(animal_id, animal_label) VALUES ('ca7597ca-0482-4919-8cfd-74d489805d77', 'Lapin');
-INSERT INTO animal(animal_id, animal_label) VALUES ('ec834681-dbc3-400c-b7dd-5387d956f795', 'Grenouille');
+
+
+INSERT INTO animal(animal_id, animal_label) VALUES
+(gen_random_uuid(), 'Poule'),
+(gen_random_uuid(), 'Bœuf'),
+(gen_random_uuid(), 'Mouton'),
+(gen_random_uuid(), 'Veau'),
+(gen_random_uuid(), 'Agneau'),
+(gen_random_uuid(), 'Porc'),
+(gen_random_uuid(), 'Saumon'),
+(gen_random_uuid(), 'Cheval'),
+(gen_random_uuid(), 'Truite'),
+(gen_random_uuid(), 'Dinde'),
+(gen_random_uuid(), 'Moule'),
+(gen_random_uuid(), 'Huître'),
+(gen_random_uuid(), 'Bison'),
+(gen_random_uuid(), 'Cerf'),
+(gen_random_uuid(), 'Oie'),
+(gen_random_uuid(), 'Canard'),
+(gen_random_uuid(), 'Sanglier'),
+(gen_random_uuid(), 'Faisan'),
+(gen_random_uuid(), 'Pintade'),
+(gen_random_uuid(), 'Lapin'),
+(gen_random_uuid(), 'Grenouille');
+
+
 
 INSERT INTO unit(unit_id, unit_label) VALUES
 ('886ef1ff-004d-4446-b8b5-37fd9d9e8710', 'g'),
@@ -215,6 +182,8 @@ INSERT INTO unit(unit_id, unit_label) VALUES
 ('c3f7e8d9-5a6b-4c1d-9e2f-8b7a6b5c4d3e', 'ml'),
 ('d2e1f0a9-8b7c-4d6e-5f4a-3c2b1a0d9e8f', 'pc'),
 ('f1e2d3c4-b5a6-4789-8901-2345f6e7f8a9', 'cl');
+
+
 
 INSERT INTO ingredient(ingredient_id, ingredient_label, vegetarian, vegan, gluten_free, lactose_free, calorie, unit_id) VALUES
 (gen_random_uuid(), 'Pomme', TRUE, TRUE, TRUE, TRUE, 52, '886ef1ff-004d-4446-b8b5-37fd9d9e8710'),
