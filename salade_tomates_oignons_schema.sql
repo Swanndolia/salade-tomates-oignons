@@ -555,18 +555,11 @@ VALUES (
     gen_random_uuid(),
     'admin',
     'admin@example.com',
-    crypt('admin_password', gen_salt('bf')),
+    'admin_password',
     4,
     NULL,
     TRUE
 );
-
--- Store the admin account_id in a variable
-DO $$
-DECLARE
-    admin_id UUID;
-BEGIN
-    SELECT account_id INTO admin_id FROM account WHERE email = 'admin@example.com';
 
 -- Curry de Poulet
 INSERT INTO recipe (recipe_id, recipe_label, recipe_public, instruction, duration, recipe_picture, account_id) VALUES
@@ -578,7 +571,7 @@ INSERT INTO recipe (recipe_id, recipe_label, recipe_public, instruction, duratio
 6. Versez le lait de coco et les tomates en dés, portez à frémissement.
 7. Réduisez le feu et laissez mijoter pendant 15-20 minutes.
 8. Ajoutez la coriandre ciselée et assaisonnez de sel et de poivre.
-9. Servez chaud sur du riz.', 60, 'curry_poulet.jpg', admin_id);
+9. Servez chaud sur du riz.', 60, 'curry_poulet.jpg', (SELECT account_id FROM account WHERE username = 'admin'));
 
 INSERT INTO compose (recipe_id, ingredient_id, quantity, consumed)
 SELECT r.recipe_id, i.ingredient_id, q.quantity, TRUE
@@ -608,7 +601,7 @@ INSERT INTO recipe (recipe_id, recipe_label, recipe_public, instruction, duratio
 8. Retournez délicatement le saumon et grillez encore 3-4 minutes.
 9. Retirez du gril lorsque la température interne atteint 63°C.
 10. Laissez reposer 5 minutes avant de servir.
-11. Garnissez de quartiers de citron et d''aneth frais.', 30, 'saumon_grille.jpg', admin_id);
+11. Garnissez de quartiers de citron et d''aneth frais.', 30, 'saumon_grille.jpg', (SELECT account_id FROM account WHERE username = 'admin'));
 
 INSERT INTO compose (recipe_id, ingredient_id, quantity, consumed)
 SELECT r.recipe_id, i.ingredient_id, q.quantity, TRUE
@@ -633,7 +626,7 @@ INSERT INTO recipe (recipe_id, recipe_label, recipe_public, instruction, duratio
 3. Frottez le mélange sur et sous la peau du poulet.
 4. Placez le poulet dans un plat allant au four.
 5. Enfournez pour 1h30, en arrosant toutes les 30 minutes.
-6. Vérifiez la cuisson et laissez reposer 10 minutes avant de servir.', 100, 'poulet_roti_herbes.jpg', admin_id);
+6. Vérifiez la cuisson et laissez reposer 10 minutes avant de servir.', 100, 'poulet_roti_herbes.jpg', (SELECT account_id FROM account WHERE username = 'admin'));
 
 INSERT INTO compose (recipe_id, ingredient_id, quantity, consumed)
 SELECT r.recipe_id, i.ingredient_id, q.quantity, TRUE
@@ -659,7 +652,7 @@ INSERT INTO recipe (recipe_id, recipe_label, recipe_public, instruction, duratio
 3. Battez les œufs avec le parmesan râpé et le poivre.
 4. Égouttez les pâtes et remettez-les dans la casserole.
 5. Ajoutez les lardons et le mélange d''œufs, remuez rapidement.
-6. Servez immédiatement avec du parmesan supplémentaire.', 20, 'pates_carbonara.jpg', admin_id);
+6. Servez immédiatement avec du parmesan supplémentaire.', 20, 'pates_carbonara.jpg', (SELECT account_id FROM account WHERE username = 'admin'));
 
 INSERT INTO compose (recipe_id, ingredient_id, quantity, consumed)
 SELECT r.recipe_id, i.ingredient_id, q.quantity, TRUE
@@ -684,7 +677,7 @@ INSERT INTO recipe (recipe_id, recipe_label, recipe_public, instruction, duratio
 3. Faites griller les croûtons à la poêle.
 4. Grillez le poulet et coupez-le en morceaux.
 5. Mélangez la salade avec la sauce, ajoutez le poulet, les croûtons et le parmesan.
-6. Servez immédiatement.', 25, 'salade_cesar.jpg', admin_id);
+6. Servez immédiatement.', 25, 'salade_cesar.jpg', (SELECT account_id FROM account WHERE username = 'admin'));
 
 INSERT INTO compose (recipe_id, ingredient_id, quantity, consumed)
 SELECT r.recipe_id, i.ingredient_id, q.quantity, TRUE
@@ -714,7 +707,7 @@ INSERT INTO recipe (recipe_id, recipe_label, recipe_public, instruction, duratio
 4. Ajoutez les poivrons et les tomates, cuisez encore 15 minutes.
 5. Assaisonnez avec les herbes, le sel et le poivre.
 6. Laissez mijoter à feu doux pendant 30 minutes.
-7. Servez chaud ou froid.', 70, 'ratatouille.jpg', admin_id);
+7. Servez chaud ou froid.', 70, 'ratatouille.jpg', (SELECT account_id FROM account WHERE username = 'admin'));
 
 INSERT INTO compose (recipe_id, ingredient_id, quantity, consumed)
 SELECT r.recipe_id, i.ingredient_id, q.quantity, TRUE
@@ -745,7 +738,7 @@ INSERT INTO recipe (recipe_id, recipe_label, recipe_public, instruction, duratio
 4. Disposez les pommes sur la pâte.
 5. Mélangez le sucre, la cannelle et le beurre fondu.
 6. Versez le mélange sur les pommes.
-7. Enfournez pour 30-35 minutes.', 50, 'tarte_aux_pommes.jpg', admin_id);
+7. Enfournez pour 30-35 minutes.', 50, 'tarte_aux_pommes.jpg', (SELECT account_id FROM account WHERE username = 'admin'));
 
 INSERT INTO compose (recipe_id, ingredient_id, quantity, consumed)
 SELECT r.recipe_id, i.ingredient_id, q.quantity, TRUE
@@ -770,7 +763,7 @@ INSERT INTO recipe (recipe_id, recipe_label, recipe_public, instruction, duratio
 3. Dans un saladier, mélangez les tomates et l''oignon.
 4. Ajoutez l''huile d''olive, le vinaigre balsamique, le sel et le poivre.
 5. Mélangez délicatement.
-6. Parsemez de basilic frais ciselé avant de servir.', 15, 'salade_tomates_oignons.jpg', admin_id);
+6. Parsemez de basilic frais ciselé avant de servir.', 15, 'salade_tomates_oignons.jpg', (SELECT account_id FROM account WHERE username = 'admin'));
 
 INSERT INTO compose (recipe_id, ingredient_id, quantity, consumed)
 SELECT r.recipe_id, i.ingredient_id, q.quantity, TRUE
@@ -798,7 +791,7 @@ INSERT INTO recipe (recipe_id, recipe_label, recipe_public, instruction, duratio
 4. Poussez les ingrédients sur le côté et faites cuire l''œuf brouillé.
 5. Ajoutez les nouilles égouttées, la sauce de poisson, le sucre et le jus de citron vert.
 6. Incorporez les pousses de soja et les oignons verts.
-7. Servez garni de cacahuètes concassées et de coriandre fraîche.', 30, 'pad_thai.jpg', admin_id);
+7. Servez garni de cacahuètes concassées et de coriandre fraîche.', 30, 'pad_thai.jpg', (SELECT account_id FROM account WHERE username = 'admin'));
 
 INSERT INTO compose (recipe_id, ingredient_id, quantity, consumed)
 SELECT r.recipe_id, i.ingredient_id, q.quantity, TRUE
@@ -829,7 +822,7 @@ INSERT INTO recipe (recipe_id, recipe_label, recipe_public, instruction, duratio
 4. Incorporez le riz et le safran, en remuant pour bien enrober.
 5. Versez le bouillon chaud et laissez mijoter à feu doux pendant 15 minutes.
 6. Ajoutez les escargots et les artichauts, puis continuez la cuisson pendant 10 minutes.
-7. Garnissez de quartiers de citron et servez chaud.', 60, 'paella_valenciana.jpg', admin_id);
+7. Garnissez de quartiers de citron et servez chaud.', 60, 'paella_valenciana.jpg', (SELECT account_id FROM account WHERE username = 'admin'));
 
 INSERT INTO compose (recipe_id, ingredient_id, quantity, consumed)
 SELECT r.recipe_id, i.ingredient_id, q.quantity, TRUE
@@ -861,7 +854,7 @@ INSERT INTO recipe (recipe_id, recipe_label, recipe_public, instruction, duratio
 5. Disposez les ingrédients (concombre, avocat, saumon) en ligne au centre.
 6. Roulez fermement à l''aide du tapis bambou.
 7. Coupez le rouleau en 6-8 morceaux avec un couteau bien aiguisé.
-8. Servez avec de la sauce soja, du wasabi et du gingembre mariné.', 45, 'sushi_maki.jpg', admin_id);
+8. Servez avec de la sauce soja, du wasabi et du gingembre mariné.', 45, 'sushi_maki.jpg', (SELECT account_id FROM account WHERE username = 'admin'));
 
 INSERT INTO compose (recipe_id, ingredient_id, quantity, consumed)
 SELECT r.recipe_id, i.ingredient_id, q.quantity, TRUE
@@ -892,7 +885,7 @@ INSERT INTO recipe (recipe_id, recipe_label, recipe_public, instruction, duratio
 5. Versez le vin de la marinade et le bouillon, ajoutez le bouquet garni.
 6. Laissez mijoter à feu doux pendant 2h30.
 7. 30 minutes avant la fin, ajoutez les champignons sautés et les lardons.
-8. Servez chaud avec des pommes de terre vapeur ou des pâtes.', 180, 'boeuf_bourguignon.jpg', admin_id);
+8. Servez chaud avec des pommes de terre vapeur ou des pâtes.', 180, 'boeuf_bourguignon.jpg', (SELECT account_id FROM account WHERE username = 'admin'));
 
 INSERT INTO compose (recipe_id, ingredient_id, quantity, consumed)
 SELECT r.recipe_id, i.ingredient_id, q.quantity, TRUE
@@ -923,7 +916,7 @@ INSERT INTO recipe (recipe_id, recipe_label, recipe_public, instruction, duratio
 5. Faites chauffer l''huile dans une casserole.
 6. Faites frire les falafels par petites quantités jusqu''à ce qu''ils soient dorés.
 7. Égouttez sur du papier absorbant.
-8. Servez chaud dans du pain pita avec de la salade et de la sauce tahini.', 40, 'falafel.jpg', admin_id);
+8. Servez chaud dans du pain pita avec de la salade et de la sauce tahini.', 40, 'falafel.jpg', (SELECT account_id FROM account WHERE username = 'admin'));
 
 INSERT INTO compose (recipe_id, ingredient_id, quantity, consumed)
 SELECT r.recipe_id, i.ingredient_id, q.quantity, TRUE
@@ -955,7 +948,7 @@ INSERT INTO recipe (recipe_id, recipe_label, recipe_public, instruction, duratio
 5. Augmentez la température de l''huile à 190°C et faites frire une seconde fois jusqu''à ce qu''elles soient dorées et croustillantes.
 6. Disposez les frites dans un plat, ajoutez le fromage en grains.
 7. Versez la sauce chaude sur le dessus.
-8. Servez immédiatement et dégustez pendant que c''est chaud.', 60, 'poutine.jpg', admin_id);
+8. Servez immédiatement et dégustez pendant que c''est chaud.', 60, 'poutine.jpg', (SELECT account_id FROM account WHERE username = 'admin'));
 
 INSERT INTO compose (recipe_id, ingredient_id, quantity, consumed)
 SELECT r.recipe_id, i.ingredient_id, q.quantity, TRUE
@@ -985,7 +978,7 @@ INSERT INTO recipe (recipe_id, recipe_label, recipe_public, instruction, duratio
 7. Versez ce mélange sur la préparation de viande.
 8. Ajoutez les feuilles de laurier sur le dessus.
 9. Enfournez à 180°C pendant 45 minutes.
-10. Servez chaud avec du riz jaune.', 75, 'bobotie.jpg', admin_id);
+10. Servez chaud avec du riz jaune.', 75, 'bobotie.jpg', (SELECT account_id FROM account WHERE username = 'admin'));
 
 INSERT INTO compose (recipe_id, ingredient_id, quantity, consumed)
 SELECT r.recipe_id, i.ingredient_id, q.quantity, TRUE
@@ -1017,7 +1010,7 @@ INSERT INTO recipe (recipe_id, recipe_label, recipe_public, instruction, duratio
 5. Ajoutez les nouilles égouttées, la sauce de poisson, le sucre et le tamarin.
 6. Incorporez les germes de soja et les oignons verts.
 7. Faites sauter le tout pendant 2-3 minutes.
-8. Servez garni de cacahuètes concassées et de coriandre fraîche.', 30, 'pad_thai.jpg', admin_id);
+8. Servez garni de cacahuètes concassées et de coriandre fraîche.', 30, 'pad_thai.jpg', (SELECT account_id FROM account WHERE username = 'admin'));
 
 INSERT INTO compose (recipe_id, ingredient_id, quantity, consumed)
 SELECT r.recipe_id, i.ingredient_id, q.quantity, TRUE
@@ -1051,7 +1044,7 @@ INSERT INTO recipe (recipe_id, recipe_label, recipe_public, instruction, duratio
 5. Disposez la semoule dans un grand plat.
 6. Disposez les viandes et les légumes sur la semoule.
 7. Arrosez de bouillon.
-8. Servez avec du harissa à part.', 120, 'couscous_royal.jpg', admin_id);
+8. Servez avec du harissa à part.', 120, 'couscous_royal.jpg', (SELECT account_id FROM account WHERE username = 'admin'));
 
 INSERT INTO compose (recipe_id, ingredient_id, quantity, consumed)
 SELECT r.recipe_id, i.ingredient_id, q.quantity, TRUE
@@ -1085,7 +1078,7 @@ INSERT INTO recipe (recipe_id, recipe_label, recipe_public, instruction, duratio
 6. Disposez le saumon, le concombre et l''avocat sur le riz.
 7. Roulez fermement à l''aide du tapis.
 8. Coupez le rouleau en 6-8 morceaux.
-9. Servez avec de la sauce soja, du wasabi et du gingembre mariné.', 60, 'sushi_rolls.jpg', admin_id);
+9. Servez avec de la sauce soja, du wasabi et du gingembre mariné.', 60, 'sushi_rolls.jpg', (SELECT account_id FROM account WHERE username = 'admin'));
 
 INSERT INTO compose (recipe_id, ingredient_id, quantity, consumed)
 SELECT r.recipe_id, i.ingredient_id, q.quantity, TRUE
@@ -1118,7 +1111,7 @@ INSERT INTO recipe (recipe_id, recipe_label, recipe_public, instruction, duratio
 5. Réduisez le feu et laissez mijoter sans remuer pendant 18 minutes.
 6. Ajoutez les escargots et les petits pois. Continuez la cuisson pendant 5 minutes.
 7. Augmentez le feu pour créer une croûte au fond (socarrat).
-8. Retirez du feu, couvrez et laissez reposer 5-10 minutes avant de servir.', 60, 'paella_valenciana.jpg', admin_id);
+8. Retirez du feu, couvrez et laissez reposer 5-10 minutes avant de servir.', 60, 'paella_valenciana.jpg', (SELECT account_id FROM account WHERE username = 'admin'));
 
 INSERT INTO compose (recipe_id, ingredient_id, quantity, consumed)
 SELECT r.recipe_id, i.ingredient_id, q.quantity, TRUE
@@ -1150,7 +1143,7 @@ INSERT INTO recipe (recipe_id, recipe_label, recipe_public, instruction, duratio
 4. Ajoutez le chou et le bouillon. Portez à ébullition puis laissez mijoter 1 heure.
 5. Ajoutez les tomates et le jus de citron. Cuisez encore 15 minutes.
 6. Assaisonnez avec le sel, le poivre et l''aneth.
-7. Servez chaud avec une cuillère de crème fraîche et du pain noir.', 90, 'borscht.jpg', admin_id);
+7. Servez chaud avec une cuillère de crème fraîche et du pain noir.', 90, 'borscht.jpg', (SELECT account_id FROM account WHERE username = 'admin'));
 
 INSERT INTO compose (recipe_id, ingredient_id, quantity, consumed)
 SELECT r.recipe_id, i.ingredient_id, q.quantity, TRUE
@@ -1184,7 +1177,7 @@ INSERT INTO recipe (recipe_id, recipe_label, recipe_public, instruction, duratio
 5. Dans un plat, alternez des couches d''aubergines et de sauce tomate.
 6. Terminez par la béchamel et saupoudrez de fromage râpé.
 7. Enfournez à 180°C pendant 45 minutes.
-8. Laissez reposer 15 minutes avant de servir.', 120, 'moussaka.jpg', admin_id);
+8. Laissez reposer 15 minutes avant de servir.', 120, 'moussaka.jpg', (SELECT account_id FROM account WHERE username = 'admin'));
 
 INSERT INTO compose (recipe_id, ingredient_id, quantity, consumed)
 SELECT r.recipe_id, i.ingredient_id, q.quantity, TRUE
@@ -1218,7 +1211,7 @@ INSERT INTO recipe (recipe_id, recipe_label, recipe_public, instruction, duratio
 5. Ajoutez les feuilles de laurier et laissez mijoter à feu doux pendant 2-3 heures.
 6. Préparez le riz et faites frire le manioc.
 7. Coupez l''orange en quartiers.
-8. Servez la feijoada avec le riz, le manioc frit, les quartiers d''orange et la farofa.', 180, 'feijoada.jpg', admin_id);
+8. Servez la feijoada avec le riz, le manioc frit, les quartiers d''orange et la farofa.', 180, 'feijoada.jpg', (SELECT account_id FROM account WHERE username = 'admin'));
 
 INSERT INTO compose (recipe_id, ingredient_id, quantity, consumed)
 SELECT r.recipe_id, i.ingredient_id, q.quantity, TRUE
@@ -1251,7 +1244,7 @@ INSERT INTO recipe (recipe_id, recipe_label, recipe_public, instruction, duratio
 5. Dans des bols, disposez les nouilles, puis le bœuf cru.
 6. Versez le bouillon bouillant sur le bœuf pour le cuire légèrement.
 7. Garnissez de pousses de soja, d''herbes fraîches et d''oignons verts.
-8. Servez avec du citron vert et de la sauce sriracha.', 240, 'pho.jpg', admin_id);
+8. Servez avec du citron vert et de la sauce sriracha.', 240, 'pho.jpg', (SELECT account_id FROM account WHERE username = 'admin'));
 
 INSERT INTO compose (recipe_id, ingredient_id, quantity, consumed)
 SELECT r.recipe_id, i.ingredient_id, q.quantity, TRUE
@@ -1286,7 +1279,7 @@ INSERT INTO recipe (recipe_id, recipe_label, recipe_public, instruction, duratio
 5. Laissez mijoter à feu doux pendant 1h30, en remuant de temps en temps.
 6. Ajustez l''assaisonnement avec du sel et du poivre.
 7. Servez chaud, garni de crème fraîche, de cheddar râpé et de coriandre fraîche.
-8. Accompagnez de riz ou de tortillas.', 120, 'chili_con_carne.jpg', admin_id);
+8. Accompagnez de riz ou de tortillas.', 120, 'chili_con_carne.jpg', (SELECT account_id FROM account WHERE username = 'admin'));
 
 INSERT INTO compose (recipe_id, ingredient_id, quantity, consumed)
 SELECT r.recipe_id, i.ingredient_id, q.quantity, TRUE
@@ -1322,7 +1315,7 @@ INSERT INTO recipe (recipe_id, recipe_label, recipe_public, instruction, duratio
 7. Ajoutez le thon émietté et les œufs durs coupés en quartiers.
 8. Préparez la vinaigrette en mélangeant l''huile d''olive, le vinaigre, la moutarde, le sel et le poivre.
 9. Arrosez la salade de vinaigrette et parsemez de basilic frais ciselé.
-10. Servez frais avec des tranches de pain grillé.', 30, 'salade_nicoise.jpg', admin_id);
+10. Servez frais avec des tranches de pain grillé.', 30, 'salade_nicoise.jpg', (SELECT account_id FROM account WHERE username = 'admin'));
 
 INSERT INTO compose (recipe_id, ingredient_id, quantity, consumed)
 SELECT r.recipe_id, i.ingredient_id, q.quantity, TRUE
