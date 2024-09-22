@@ -429,6 +429,7 @@ INSERT INTO ingredient(ingredient_id, ingredient_label, vegetarian, vegan, glute
 (gen_random_uuid(), 'Frites', TRUE, TRUE, TRUE, TRUE, 312, '886ef1ff-004d-4446-b8b5-37fd9d9e8710'),
 (gen_random_uuid(), 'Nuggets de poulet', FALSE, FALSE, FALSE, FALSE, 308, '886ef1ff-004d-4446-b8b5-37fd9d9e8710');
 
+-- Ingrédients de base
 INSERT INTO ingredient(ingredient_id, ingredient_label, vegetarian, vegan, gluten_free, lactose_free, calorie, unit_id) VALUES
 (gen_random_uuid(), 'Farine', TRUE, TRUE, FALSE, TRUE, 379, '886ef1ff-004d-4446-b8b5-37fd9d9e8710'),
 (gen_random_uuid(), 'Levure', TRUE, TRUE, TRUE, TRUE, 325, '886ef1ff-004d-4446-b8b5-37fd9d9e8710'),
@@ -436,6 +437,10 @@ INSERT INTO ingredient(ingredient_id, ingredient_label, vegetarian, vegan, glute
 (gen_random_uuid(), 'Sel', TRUE, TRUE, TRUE, TRUE, 0, '886ef1ff-004d-4446-b8b5-37fd9d9e8710'),
 (gen_random_uuid(), 'Poivre', TRUE, TRUE, TRUE, TRUE, 261, '886ef1ff-004d-4446-b8b5-37fd9d9e8710'),
 (gen_random_uuid(), 'Bouillon', FALSE, FALSE, TRUE, TRUE, 4, 'f1e2d3c4-b5a6-4789-8901-2345f6e7f8a9'),
+(gen_random_uuid(), 'Eau', TRUE, TRUE, TRUE, TRUE, 0, 'f1e2d3c4-b5a6-4789-8901-2345f6e7f8a9');
+
+-- Herbes et épices
+INSERT INTO ingredient(ingredient_id, ingredient_label, vegetarian, vegan, gluten_free, lactose_free, calorie, unit_id) VALUES
 (gen_random_uuid(), 'Basilic', TRUE, TRUE, TRUE, TRUE, 50, '886ef1ff-004d-4446-b8b5-37fd9d9e8710'),
 (gen_random_uuid(), 'Persil', TRUE, TRUE, TRUE, TRUE, 25, '886ef1ff-004d-4446-b8b5-37fd9d9e8710'),
 (gen_random_uuid(), 'Coriandre', TRUE, TRUE, TRUE, TRUE, 25, '886ef1ff-004d-4446-b8b5-37fd9d9e8710'),
@@ -455,27 +460,25 @@ INSERT INTO ingredient(ingredient_id, ingredient_label, vegetarian, vegan, glute
 (gen_random_uuid(), 'Curcuma', TRUE, TRUE, TRUE, TRUE, 286, '886ef1ff-004d-4446-b8b5-37fd9d9e8710'),
 (gen_random_uuid(), 'Aneth', TRUE, TRUE, TRUE, TRUE, 33, '886ef1ff-004d-4446-b8b5-37fd9d9e8710');
 
+-- Sauces et condiments
 INSERT INTO ingredient(ingredient_id, ingredient_label, vegetarian, vegan, gluten_free, lactose_free, calorie, unit_id) VALUES
 (gen_random_uuid(), 'Ketchup', TRUE, TRUE, TRUE, TRUE, 100, '886ef1ff-004d-4446-b8b5-37fd9d9e8710'),
 (gen_random_uuid(), 'Moutarde', TRUE, TRUE, TRUE, TRUE, 60, '886ef1ff-004d-4446-b8b5-37fd9d9e8710'),
 (gen_random_uuid(), 'Mayonnaise', TRUE, FALSE, TRUE, TRUE, 671, '886ef1ff-004d-4446-b8b5-37fd9d9e8710'),
 (gen_random_uuid(), 'Sauce soja', TRUE, TRUE, FALSE, TRUE, 50, 'f1e2d3c4-b5a6-4789-8901-2345f6e7f8a9'),
 (gen_random_uuid(), 'Vinaigre balsamique', TRUE, TRUE, TRUE, TRUE, 88, 'f1e2d3c4-b5a6-4789-8901-2345f6e7f8a9'),
-(gen_random_uuid(), 'Huile d''olive', TRUE, TRUE, TRUE, TRUE, 850, 'f1e2d3c4-b5a6-4789-8901-2345f6e7f8a9'),
+(gen_random_uuid(), 'Huile d''olive', TRUE, TRUE, TRUE, TRUE, 881, 'f1e2d3c4-b5a6-4789-8901-2345f6e7f8a9'),
 (gen_random_uuid(), 'Pesto', TRUE, FALSE, TRUE, FALSE, 387, '886ef1ff-004d-4446-b8b5-37fd9d9e8710'),
 (gen_random_uuid(), 'Sauce Worcestershire', FALSE, FALSE, TRUE, TRUE, 100, 'f1e2d3c4-b5a6-4789-8901-2345f6e7f8a9'),
 (gen_random_uuid(), 'Tabasco', TRUE, TRUE, TRUE, TRUE, 0, 'f1e2d3c4-b5a6-4789-8901-2345f6e7f8a9'),
 (gen_random_uuid(), 'Sauce barbecue', TRUE, TRUE, TRUE, TRUE, 171, '886ef1ff-004d-4446-b8b5-37fd9d9e8710'),
 (gen_random_uuid(), 'Sauce tomate', TRUE, TRUE, TRUE, TRUE, 25, '886ef1ff-004d-4446-b8b5-37fd9d9e8710'),
 (gen_random_uuid(), 'Sauce béchamel', TRUE, FALSE, FALSE, FALSE, 107, '886ef1ff-004d-4446-b8b5-37fd9d9e8710'),
-(gen_random_uuid(), 'Sauce hollandaise', TRUE, FALSE, TRUE, FALSE, 493, '886ef1ff-004d-4446-b8b5-37fd9d9e8710');
+(gen_random_uuid(), 'Sauce hollandaise', TRUE, FALSE, TRUE, FALSE, 493, '886ef1ff-004d-4446-b8b5-37fd9d9e8710'),
+(gen_random_uuid(), 'Sauce aigre-douce', TRUE, TRUE, TRUE, TRUE, 110, 'f1e2d3c4-b5a6-4789-8901-2345f6e7f8a9');
 
+-- Boissons
 INSERT INTO ingredient(ingredient_id, ingredient_label, vegetarian, vegan, gluten_free, lactose_free, calorie, unit_id) VALUES
-(gen_random_uuid(), 'Eau', TRUE, TRUE, TRUE, TRUE, 0, 'f1e2d3c4-b5a6-4789-8901-2345f6e7f8a9'),
-(gen_random_uuid(), 'Café', TRUE, TRUE, TRUE, TRUE, 1, 'f1e2d3c4-b5a6-4789-8901-2345f6e7f8a9'),
-(gen_random_uuid(), 'Thé', TRUE, TRUE, TRUE, TRUE, 1, 'f1e2d3c4-b5a6-4789-8901-2345f6e7f8a9'),
-(gen_random_uuid(), 'Jus d''orange', TRUE, TRUE, TRUE, TRUE, 47, 'f1e2d3c4-b5a6-4789-8901-2345f6e7f8a9'),
-(gen_random_uuid(), 'Eau', TRUE, TRUE, TRUE, TRUE, 0, 'f1e2d3c4-b5a6-4789-8901-2345f6e7f8a9'),
 (gen_random_uuid(), 'Café', TRUE, TRUE, TRUE, TRUE, 1, 'f1e2d3c4-b5a6-4789-8901-2345f6e7f8a9'),
 (gen_random_uuid(), 'Thé', TRUE, TRUE, TRUE, TRUE, 1, 'f1e2d3c4-b5a6-4789-8901-2345f6e7f8a9'),
 (gen_random_uuid(), 'Jus d''orange', TRUE, TRUE, TRUE, TRUE, 47, 'f1e2d3c4-b5a6-4789-8901-2345f6e7f8a9'),
@@ -488,18 +491,23 @@ INSERT INTO ingredient(ingredient_id, ingredient_label, vegetarian, vegan, glute
 (gen_random_uuid(), 'Vodka', TRUE, TRUE, TRUE, TRUE, 220, 'f1e2d3c4-b5a6-4789-8901-2345f6e7f8a9'),
 (gen_random_uuid(), 'Whisky', TRUE, TRUE, TRUE, TRUE, 239, 'f1e2d3c4-b5a6-4789-8901-2345f6e7f8a9');
 
+-- Sucres et édulcorants
 INSERT INTO ingredient(ingredient_id, ingredient_label, vegetarian, vegan, gluten_free, lactose_free, calorie, unit_id) VALUES
 (gen_random_uuid(), 'Sucre', TRUE, TRUE, TRUE, TRUE, 400, '886ef1ff-004d-4446-b8b5-37fd9d9e8710'),
 (gen_random_uuid(), 'Miel', TRUE, FALSE, TRUE, TRUE, 305, '886ef1ff-004d-4446-b8b5-37fd9d9e8710'),
+(gen_random_uuid(), 'Sirop d''érable', TRUE, TRUE, TRUE, TRUE, 260, 'f1e2d3c4-b5a6-4789-8901-2345f6e7f8a9'),
+(gen_random_uuid(), 'Caramel', TRUE, FALSE, TRUE, FALSE, 300, '886ef1ff-004d-4446-b8b5-37fd9d9e8710');
+
+-- Produits sucrés
+INSERT INTO ingredient(ingredient_id, ingredient_label, vegetarian, vegan, gluten_free, lactose_free, calorie, unit_id) VALUES
 (gen_random_uuid(), 'Chocolat', TRUE, FALSE, TRUE, FALSE, 554, '886ef1ff-004d-4446-b8b5-37fd9d9e8710'),
 (gen_random_uuid(), 'Confiture', TRUE, TRUE, TRUE, TRUE, 280, '886ef1ff-004d-4446-b8b5-37fd9d9e8710'),
-(gen_random_uuid(), 'Sirop d''érable', TRUE, TRUE, TRUE, TRUE, 260, 'f1e2d3c4-b5a6-4789-8901-2345f6e7f8a9'),
-(gen_random_uuid(), 'Caramel', TRUE, FALSE, TRUE, FALSE, 300, '886ef1ff-004d-4446-b8b5-37fd9d9e8710'),
 (gen_random_uuid(), 'Gelée', TRUE, FALSE, TRUE, TRUE, 250, '886ef1ff-004d-4446-b8b5-37fd9d9e8710'),
 (gen_random_uuid(), 'Pâte d''amande', TRUE, TRUE, TRUE, TRUE, 700, '886ef1ff-004d-4446-b8b5-37fd9d9e8710'),
 (gen_random_uuid(), 'Pâte à tartiner', TRUE, FALSE, TRUE, FALSE, 540, '886ef1ff-004d-4446-b8b5-37fd9d9e8710'),
 (gen_random_uuid(), 'Crème de marrons', TRUE, TRUE, TRUE, TRUE, 223, '886ef1ff-004d-4446-b8b5-37fd9d9e8710');
 
+-- Alternatives végétales
 INSERT INTO ingredient(ingredient_id, ingredient_label, vegetarian, vegan, gluten_free, lactose_free, calorie, unit_id) VALUES
 (gen_random_uuid(), 'Tofu', TRUE, TRUE, TRUE, TRUE, 76, '886ef1ff-004d-4446-b8b5-37fd9d9e8710'),
 (gen_random_uuid(), 'Tempeh', TRUE, TRUE, TRUE, TRUE, 116, '886ef1ff-004d-4446-b8b5-37fd9d9e8710'),
@@ -512,6 +520,7 @@ INSERT INTO ingredient(ingredient_id, ingredient_label, vegetarian, vegan, glute
 (gen_random_uuid(), 'Steak végétal', TRUE, TRUE, FALSE, TRUE, 168, '886ef1ff-004d-4446-b8b5-37fd9d9e8710'),
 (gen_random_uuid(), 'Yaourt végétal', TRUE, TRUE, TRUE, TRUE, 41, '886ef1ff-004d-4446-b8b5-37fd9d9e8710');
 
+-- Plats préparés
 INSERT INTO ingredient(ingredient_id, ingredient_label, vegetarian, vegan, gluten_free, lactose_free, calorie, unit_id) VALUES
 (gen_random_uuid(), 'Pizza', FALSE, FALSE, FALSE, FALSE, 266, '886ef1ff-004d-4446-b8b5-37fd9d9e8710'),
 (gen_random_uuid(), 'Lasagne', FALSE, FALSE, FALSE, FALSE, 115, '886ef1ff-004d-4446-b8b5-37fd9d9e8710'),
@@ -521,13 +530,8 @@ INSERT INTO ingredient(ingredient_id, ingredient_label, vegetarian, vegan, glute
 (gen_random_uuid(), 'Frites', TRUE, TRUE, TRUE, TRUE, 312, '886ef1ff-004d-4446-b8b5-37fd9d9e8710'),
 (gen_random_uuid(), 'Nuggets de poulet', FALSE, FALSE, FALSE, FALSE, 308, '886ef1ff-004d-4446-b8b5-37fd9d9e8710');
 
+-- Autres ingrédients
 INSERT INTO ingredient(ingredient_id, ingredient_label, vegetarian, vegan, gluten_free, lactose_free, calorie, unit_id) VALUES
-(gen_random_uuid(), 'Farine', TRUE, TRUE, FALSE, TRUE, 379, '886ef1ff-004d-4446-b8b5-37fd9d9e8710'),
-(gen_random_uuid(), 'Levure', TRUE, TRUE, TRUE, TRUE, 325, '886ef1ff-004d-4446-b8b5-37fd9d9e8710'),
-(gen_random_uuid(), 'Bicarbonate de soude', TRUE, TRUE, TRUE, TRUE, 0, '886ef1ff-004d-4446-b8b5-37fd9d9e8710'),
-(gen_random_uuid(), 'Sel', TRUE, TRUE, TRUE, TRUE, 0, '886ef1ff-004d-4446-b8b5-37fd9d9e8710'),
-(gen_random_uuid(), 'Poivre', TRUE, TRUE, TRUE, TRUE, 261, '886ef1ff-004d-4446-b8b5-37fd9d9e8710'),
-(gen_random_uuid(), 'Bouillon', FALSE, FALSE, TRUE, TRUE, 4, 'f1e2d3c4-b5a6-4789-8901-2345f6e7f8a9'),
 (gen_random_uuid(), 'Chapelure', TRUE, TRUE, FALSE, TRUE, 400, '886ef1ff-004d-4446-b8b5-37fd9d9e8710'),
 (gen_random_uuid(), 'Fécule de maïs', TRUE, TRUE, TRUE, TRUE, 381, '886ef1ff-004d-4446-b8b5-37fd9d9e8710'),
 (gen_random_uuid(), 'Gélatine', FALSE, FALSE, TRUE, TRUE, 329, '886ef1ff-004d-4446-b8b5-37fd9d9e8710'),
@@ -538,16 +542,7 @@ INSERT INTO ingredient(ingredient_id, ingredient_label, vegetarian, vegan, glute
 (gen_random_uuid(), 'Huile de tournesol', TRUE, TRUE, TRUE, TRUE, 886, 'f1e2d3c4-b5a6-4789-8901-2345f6e7f8a9'),
 (gen_random_uuid(), 'Huile de colza', TRUE, TRUE, TRUE, TRUE, 886, 'f1e2d3c4-b5a6-4789-8901-2345f6e7f8a9'),
 (gen_random_uuid(), 'Huile de sésame', TRUE, TRUE, TRUE, TRUE, 882, 'f1e2d3c4-b5a6-4789-8901-2345f6e7f8a9'),
-(gen_random_uuid(), 'Huile de noix', TRUE, TRUE, TRUE, TRUE, 886, 'f1e2d3c4-b5a6-4789-8901-2345f6e7f8a9'),
-(gen_random_uuid(), 'Huile d''olive', TRUE, TRUE, TRUE, TRUE, 881, 'f1e2d3c4-b5a6-4789-8901-2345f6e7f8a9'),
-(gen_random_uuid(), 'Sauce soja', TRUE, TRUE, FALSE, TRUE, 53, 'f1e2d3c4-b5a6-4789-8901-2345f6e7f8a9'),
-(gen_random_uuid(), 'Moutarde', TRUE, TRUE, TRUE, TRUE, 60, '886ef1ff-004d-4446-b8b5-37fd9d9e8710'),
-(gen_random_uuid(), 'Ketchup', TRUE, TRUE, TRUE, TRUE, 100, '886ef1ff-004d-4446-b8b5-37fd9d9e8710'),
-(gen_random_uuid(), 'Mayonnaise', TRUE, FALSE, TRUE, TRUE, 681, '886ef1ff-004d-4446-b8b5-37fd9d9e8710'),
-(gen_random_uuid(), 'Pesto', TRUE, FALSE, TRUE, FALSE, 387, '886ef1ff-004d-4446-b8b5-37fd9d9e8710'),
-(gen_random_uuid(), 'Sauce tomate', TRUE, TRUE, TRUE, TRUE, 25, '886ef1ff-004d-4446-b8b5-37fd9d9e8710'),
-(gen_random_uuid(), 'Sauce barbecue', TRUE, TRUE, TRUE, TRUE, 91, '886ef1ff-004d-4446-b8b5-37fd9d9e8710'),
-(gen_random_uuid(), 'Sauce aigre-douce', TRUE, TRUE, TRUE, TRUE, 110, 'f1e2d3c4-b5a6-4789-8901-2345f6e7f8a9');
+(gen_random_uuid(), 'Huile de noix', TRUE, TRUE, TRUE, TRUE, 886, 'f1e2d3c4-b5a6-4789-8901-2345f6e7f8a9');
 
 -- Create admin account
 INSERT INTO account (account_id, username, mail, account_password, default_serving, avatar, account_admin)
@@ -688,7 +683,7 @@ CROSS JOIN (
     ('Filet', 'Poule', 200),
     ('Pain', NULL, 100),
     ('Parmesan', NULL, 50),
-    ('Anchois', 'Anchois', 20),
+    ('Anchois', NULL, 20),
     ('Œuf', 'Poule', 1),
     ('Huile d''olive', NULL, 30),
     ('Citron', NULL, 1),
@@ -749,7 +744,7 @@ CROSS JOIN (
     ('Pomme', NULL, 1000),
     ('Sucre', NULL, 100),
     ('Cannelle', NULL, 5),
-    ('Beurre', 'Vache', 50)
+    ('Beurre', NULL, 50)
 ) AS q(ingredient_label, animal_label, quantity)
 LEFT JOIN animal a ON a.animal_label = q.animal_label
 JOIN ingredient i ON i.ingredient_label = q.ingredient_label 
