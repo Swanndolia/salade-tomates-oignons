@@ -550,16 +550,15 @@ INSERT INTO ingredient(ingredient_id, ingredient_label, vegetarian, vegan, glute
 (gen_random_uuid(), 'Sauce aigre-douce', TRUE, TRUE, TRUE, TRUE, 110, 'f1e2d3c4-b5a6-4789-8901-2345f6e7f8a9');
 
 -- Create admin account
-INSERT INTO account (account_id, email, password, firstname, lastname, birthdate, gender, account_type)
+INSERT INTO account (account_id, username, mail, account_password, default_serving, avatar, account_admin)
 VALUES (
     gen_random_uuid(),
+    'admin',
     'admin@example.com',
     crypt('admin_password', gen_salt('bf')),
-    'Admin',
-    'User',
-    '1990-01-01',
-    'Other',
-    'admin'
+    4,
+    NULL,
+    TRUE
 );
 
 -- Store the admin account_id in a variable
