@@ -465,7 +465,7 @@ VALUES (
     gen_random_uuid(),
     'admin',
     'admin@example.com',
-    'admin_password',
+    'dc3565645d8002becb5fd7977aeef3e1',
     4,
     NULL,
     TRUE
