@@ -1,0 +1,29 @@
+entity,field,front,back,db
+account,id,,,
+,username,,"Max 20, not null","Max 20, not null"
+,mail,,"Max 50, not null","Max 50, not null"
+,password,,not null,"Max 64, not null"
+,default_serving,,,Default 4
+,avatar,,Max 500,Max 500
+,admin,,,default false
+,vegetarian,,,default false
+,vegan,,,default false
+,glutenFree,,,default false
+,lactoseFree,,,default false
+unit,id,,,
+,label,,"Max 20, not null","Max 20, not null"
+animal,id,,,
+,label,,"Max 20, not null","Max 20, not null"
+ingredient,id,,,
+,label,,"Max 30, not null","Max 30, not null"
+,vegetarian,,not null,not null
+,vegan,,not null,not null
+,glutenFree,,not null,not null
+,lactoseFree,,not null,not null
+,calorie,,not null,not null
+recipe,id,,,
+,label,,"Max 60, not null","Max 60, not null"
+,public,,,default false
+,instruction,,not null,not null
+,duration,,,
+,picture,,Max 500,Max 500
