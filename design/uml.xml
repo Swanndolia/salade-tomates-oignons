@@ -1,0 +1,55 @@
+@startuml
+skinparam rectangle {
+    BorderColor black
+    BackgroundColor #F5F5F5
+    RoundCorner 15
+}
+
+actor Utilisateur
+actor Administrateur
+actor Application
+
+rectangle "Diagramme de Cas d'Utilisation" {
+    (Entrer les ingrédients disponibles)
+    (Suggérer des recettes)
+    (Créer des recettes)
+    (Supprimer des recettes)
+    (Modifier des recettes)
+    (Ajuster le nombre de couverts)
+    (Voir estimation des calories)
+    (Créer un compte utilisateur)
+    (Spécifier des allergies ou préférences diététiques)
+    (Filtrer les recettes)
+    (Sauvegarder des recettes préférées)
+    (Gérer les utilisateurs)
+    (Recevoir des suggestions de remplacement d'ingrédients)
+    (Donner une note aux recettes)
+    (Partager des recettes)
+    (Proposer de nouvelles recettes)
+    (Ajouter des recettes personnelles)
+
+    (Suggérer des recettes) ..> (Entrer les ingrédients disponibles) : include
+    (Suggérer des recettes) ..> (Spécifier des allergies ou préférences diététiques) : include
+    (Filtrer les recettes) ..> (Spécifier des allergies ou préférences diététiques) : include
+    (Voir estimation des calories) ..> (Ajuster le nombre de couverts) : include
+}
+
+Utilisateur --> (Entrer les ingrédients disponibles)
+Application --> (Suggérer des recettes)
+Administrateur --> (Créer des recettes)
+Administrateur --> (Supprimer des recettes)
+Administrateur --> (Modifier des recettes)
+Utilisateur --> (Ajuster le nombre de couverts)
+Utilisateur --> (Voir estimation des calories)
+Utilisateur --> (Créer un compte utilisateur)
+Utilisateur --> (Spécifier des allergies ou préférences diététiques)
+Utilisateur --> (Filtrer les recettes)
+Utilisateur --> (Sauvegarder des recettes préférées)
+Administrateur --> (Gérer les utilisateurs)
+Utilisateur --> (Recevoir des suggestions de remplacement d'ingrédients)
+Utilisateur --> (Donner une note aux recettes)
+Utilisateur --> (Partager des recettes)
+Utilisateur --> (Proposer de nouvelles recettes)
+Utilisateur --> (Ajouter des recettes personnelles)
+
+@enduml
